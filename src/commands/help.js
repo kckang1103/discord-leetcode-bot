@@ -21,6 +21,10 @@ async function handleHelpCommand(message) {
         value: 'Show your personal stats'
       },
       {
+        name: '!ping',
+        value: 'Pings the server and shows latency'
+      },
+      {
         name: '!help',
         value: 'Display this help information'
       }
