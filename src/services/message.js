@@ -86,7 +86,8 @@ async function sendProblemToChannel(channelId, problem, weekly = false) {
       : `Here's a random LeetCode problem:`
 
     // Send message
-    await channel.send({ content, embeds: [embed] })
+    message = await channel.send({ content, embeds: [embed] })
+    await message.add_reaction("✅")
     console.log(`Sent problem "${problem.title}" to channel ${channelId}`)
   } catch (error) {
     console.error('Error sending problem to channel:', error)
