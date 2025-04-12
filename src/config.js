@@ -1,5 +1,5 @@
 // Configuration settings for the bot
-require('dotenv').config({ path: require('find-config')('.env')})
+require('dotenv').config({ path: require('find-config')('.env') })
 
 module.exports = {
   // Discord configuration

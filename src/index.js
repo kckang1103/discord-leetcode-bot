@@ -3,7 +3,7 @@ const { client } = require('./bot')
 const { setupCronJob } = require('./services/scheduler')
 const { registerCommandHandlers } = require('./commands/commands')
 const { registerReactionHandlers } = require('./reactions')
-require('dotenv').config({ path: require('find-config')('.env')})
+require('dotenv').config({ path: require('find-config')('.env') })
 
 // When the client is ready, run this code
 client.once('ready', () => {

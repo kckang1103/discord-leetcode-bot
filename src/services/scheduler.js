@@ -2,6 +2,7 @@
 const cron = require('node-cron')
 const { getRandomUnsolvedProblem } = require('./leetcode')
 const { sendProblemToChannel, sendErrorMessage } = require('./message')
+const { addProblem } = require('./supabase')
 const { CHANNEL_ID, TIMEZONE } = require('../config')
 
 /**
@@ -16,6 +17,15 @@ function setupCronJob() {
 
       try {
         const problem = await getRandomUnsolvedProblem()
+
+        // Store problem data
+        await addProblem(
+          problem.frontendQuestionId,
+          problem.title,
+          problem.difficulty,
+          `https://leetcode.com/problems/${problem.titleSlug}`
+        )
+
         await sendProblemToChannel(CHANNEL_ID, problem, true)
       } catch (error) {
         console.error('Error in scheduled job:', error)
