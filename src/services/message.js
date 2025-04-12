@@ -87,7 +87,7 @@ async function sendProblemToChannel(channelId, problem, weekly = false) {
 
     // Send message
     message = await channel.send({ content, embeds: [embed] })
-    await message.add_reaction("✅")
+    await message.react('✅')
     console.log(`Sent problem "${problem.title}" to channel ${channelId}`)
   } catch (error) {
     console.error('Error sending problem to channel:', error)
