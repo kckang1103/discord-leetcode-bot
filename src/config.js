@@ -7,6 +7,9 @@ module.exports = {
   CHANNEL_ID: process.env.CHANNEL_ID,
   ROLE_NAME: process.env.ROLE_NAME || 'LC Friday Enjoyer',
 
+  // Bot Name
+  BOT_NAME: 'leetcode_bot',
+
   // LeetCode API configuration
   LEETCODE_API: 'https://leetcode.com/graphql/',
 

@@ -61,8 +61,14 @@ async function handleReactionAdd(reaction, user) {
   const message = reaction.message
 
   // Check if the message author is the leetcode_bot
-  if (message.author.username !== 'leetcode_bot') {
+  if (message.author.username !== config.BOT_NAME) {
     console.log('Reaction is not on a LeetCode bot message. Ignoring.')
+    return
+  }
+
+  // Ignore reactions if the bot reacted to itself
+  if (user.username === config.BOT_NAME) {
+    console.log('Reaction is from the bot itself. Ignoring.')
     return
   }
 
@@ -137,8 +143,14 @@ async function handleReactionRemove(reaction, user) {
   const message = reaction.message
 
   // Check if the message author is the leetcode_bot
-  if (message.author.username !== 'leetcode_bot') {
+  if (message.author.username !== config.BOT_NAME) {
     console.log('Reaction is not on a LeetCode bot message. Ignoring.')
+    return
+  }
+
+  // Ignore reactions if the bot reacted to itself
+  if (user.username === config.BOT_NAME) {
+    console.log('Reaction is from the bot itself. Ignoring.')
     return
   }
 
