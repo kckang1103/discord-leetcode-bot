@@ -43,8 +43,9 @@ async function processCommands(message) {
  */
 function registerCommandHandlers(client) {
   client.on('messageCreate', async (message) => {
-    // Ignore messages from bots
-    if (message.author.bot) return
+    const botId = client.user.id;
+    // Ignore messages from bots, but allow our own bot's messages
+    if (message.author.bot && message.author.id !== botId) return
 
     processCommands(message)
   })

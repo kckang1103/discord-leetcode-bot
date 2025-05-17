@@ -104,8 +104,27 @@ async function sendErrorMessage(channelId) {
     const channel = client.channels.cache.get(channelId)
     if (channel) {
       await channel.send(
-        '❌ There was an error fetching a LeetCode problem. Please try again later or contact Kichul.'
+        '❌ There was an error with the leetcode bot. Please try again later or contact Kichul.'
       )
+    }
+  } catch (error) {
+    console.error('Failed to send error message:', error)
+  }
+}
+
+/**
+ * Sends leaderboard command to a channel
+ * @param {String} channelId - Discord channel ID
+ */
+async function sendLeaderboardToChannel(channelId) {
+  try {
+    const channel = client.channels.cache.get(channelId)
+    if (channel) {
+      await channel.send("📊 This Week's Progress:")
+      // Wait a short moment and then send the leaderboard command
+      setTimeout(async () => {
+        await channel.send('!leaderboard')
+      }, 500)
     }
   } catch (error) {
     console.error('Failed to send error message:', error)
@@ -114,5 +133,6 @@ async function sendErrorMessage(channelId) {
 
 module.exports = {
   sendProblemToChannel,
-  sendErrorMessage
+  sendErrorMessage,
+  sendLeaderboardToChannel
 }
