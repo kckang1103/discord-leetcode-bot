@@ -102,11 +102,13 @@ async function sendProblemToChannel(channelId, problem, weekly = false) {
 async function sendErrorMessage(channelId) {
   try {
     const channel = client.channels.cache.get(channelId)
-    if (channel) {
-      await channel.send(
-        '❌ There was an error with the leetcode bot. Please try again later or contact Kichul.'
-      )
+    if (!channel) {
+      console.error(`Channel with ID ${channelId} not found`)
+      return
     }
+    await channel.send(
+      '❌ There was an error with the leetcode bot. Please try again later or contact Kichul.'
+    )
   } catch (error) {
     console.error('Failed to send error message:', error)
   }
@@ -119,13 +121,19 @@ async function sendErrorMessage(channelId) {
 async function sendLeaderboardToChannel(channelId) {
   try {
     const channel = client.channels.cache.get(channelId)
-    if (channel) {
-      await channel.send("📊 This Week's Progress:")
-      // Wait a short moment and then send the leaderboard command
-      setTimeout(async () => {
-        await channel.send('!leaderboard')
-      }, 500)
+    if (!channel) {
+      console.error(`Channel with ID ${channelId} not found`)
+      return
     }
+    // Find role to ping
+    const roleId = findRoleId(channel.guild, ROLE_NAME)
+    const roleMention = roleId ? `<@&${roleId}> ` : ''
+
+    await channel.send(`${roleMention}📊 This Week's Progress:`)
+    // Wait a short moment and then send the leaderboard command
+    setTimeout(async () => {
+      await channel.send('!leaderboard')
+    }, 500)
   } catch (error) {
     console.error('Failed to send error message:', error)
   }
