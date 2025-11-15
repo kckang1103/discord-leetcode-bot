@@ -12,7 +12,7 @@ A Discord bot that sends random LeetCode problem links every Friday at 5PM and p
 - 🏆 Leaderboard tracking based on message reactions
 - 🕑 Problem history to avoid repetition
 - 📊 `!leaderboard` command to display current rankings
-- ☁️ Hosted on AWS EC2 for 24/7 uptime
+- ☁️ Running on Sir Gallahad's Raspberry Pi
 
 ## Setup Instructions
 
